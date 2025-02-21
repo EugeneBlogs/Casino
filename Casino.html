@@ -9,6 +9,10 @@
             background: #0e0e10;
             text-align: center;
             padding-top: 15%;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         .container {
@@ -106,35 +110,38 @@
             let emojiList02 = []
             let emojiList03 = []
             const emojiValue = [
-                "1F95D",
-                "1F34B",
-                "1F350",
-                "1F353",
-                "1F34A",
-                "1F352",
-                "1F348",
                 "1F347",
+                "1F348",
                 "1F349",
-                "1F34F",
-                "1F34E",
-                "1F34D",
-                "1F345",
-                "1F951",
+                "1F34A",
+                "1F34B",
                 "1F34C",
+                "1F34D",
+                "1F96D",
+                "1F34E",
+                "1F34F",
+                "1F350",
                 "1F351",
+                "1F352",
+                "1F353",
+                "1FAD0",
+                "1F95D",
+                "1F965",
+                "1F951",
                 "1F346",
+                "1F954",
                 "1F955",
+                "1F33D",
                 "1F344",
+                "1F336",
                 "1F952",
             ]
 
             function generateEmoji(emojiList) {
-                const emojiSingle =
-                    emojiValue[Math.floor(Math.random() * emojiValue.length)]
-                emojiList.push(`&#x${emojiSingle};`)
+                emojiList.push(`&#x${emojiValue[Math.floor(Math.random() * emojiValue.length)]};`)
             }
 
-            const n = 11
+            const n = 20
             for (let i = 0; i < n; i++) {
                 generateEmoji(emojiList01)
                 generateEmoji(emojiList02)
@@ -155,9 +162,7 @@
     `
         }
 
-        const btnReload = document.querySelector(".controls")
-        btnReload.addEventListener("click", function (e) {
-            e.preventDefault()
+        document.querySelector(".controls").addEventListener("click", function () {
             document.querySelectorAll(".reel").forEach((el) => el.remove())
             document.querySelector(".container").innerHTML = `
       <div class="reel first"></div>
