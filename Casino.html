@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Казино</title>
+    <style>
+        body {
+            background: #0e0e10;
+            text-align: center;
+            padding-top: 15%;
+        }
+
+        .container {
+            position: relative;
+            left: 50%;
+            margin-left: -300px;
+            width: 600px;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 30px;
+            background: radial-gradient(ellipse at center, #ffa05d 5%, #ff5353 65%);
+            box-shadow: 10px 10px 50px rgba(255, 255, 255, 0.2);
+        }
+
+        .controls,
+        .logo {
+            width: 80px;
+            font-size: 40px;
+            text-align: center;
+            line-height: 76px;
+            background: #5cfc8c;
+            margin: 0 auto 0;
+            box-shadow: 10px 10px 50px rgba(255, 255, 255, 0.2);
+        }
+
+        .controls {
+            border-radius: 0 0 20px 20px;
+            cursor: pointer;
+        }
+
+        .logo {
+            margin-top: 50px;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .reel {
+            position: absolute;
+            width: 200px;
+            height: 1800%;
+            animation: reel 1.75s linear 2;
+            overflow: hidden;
+        }
+
+        .inner {
+            width: 200px;
+            height: 66%;
+            font-size: 130px;
+            line-height: 216px;
+            overflow: hidden;
+        }
+
+        .first {
+            left: 0;
+            animation-delay: -2s;
+        }
+
+        .second {
+            left: 200px;
+            animation-delay: -1s;
+        }
+
+        .third {
+            left: 400px;
+            animation-delay: 0s;
+        }
+
+        @keyframes reel {
+            0% {
+                top: 0;
+            }
+
+            100% {
+                top: -1187%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo">🎰</div>
+    <div class="container">
+        <div class="blur">
+            <div class="reel first"></div>
+            <div class="reel second"></div>
+            <div class="reel third"></div>
+        </div>
+    </div>
+    <div class="controls">🔄</div>
+
+    <script>
+        function emojiCode() {
+            document.querySelectorAll(".inner").forEach((el) => el.remove())
+
+            let emojiList01 = []
+            let emojiList02 = []
+            let emojiList03 = []
+            const emojiValue = [
+                "1F95D",
+                "1F34B",
+                "1F350",
+                "1F353",
+                "1F34A",
+                "1F352",
+                "1F348",
+                "1F347",
+                "1F349",
+                "1F34F",
+                "1F34E",
+                "1F34D",
+                "1F345",
+                "1F951",
+                "1F34C",
+                "1F351",
+                "1F346",
+                "1F955",
+                "1F344",
+                "1F952",
+            ]
+
+            function generateEmoji(emojiList) {
+                const emojiSingle =
+                    emojiValue[Math.floor(Math.random() * emojiValue.length)]
+                emojiList.push(`&#x${emojiSingle};`)
+            }
+
+            const n = 11
+            for (let i = 0; i < n; i++) {
+                generateEmoji(emojiList01)
+                generateEmoji(emojiList02)
+                generateEmoji(emojiList03)
+            }
+
+            document.querySelector(".first").innerHTML = `
+      <div class="inner">${emojiList01.join("")}</div>
+      <div class="inner">${emojiList01.join("")}</div>
+    `
+            document.querySelector(".second").innerHTML = `
+      <div class="inner">${emojiList02.join("")}</div>
+      <div class="inner">${emojiList02.join("")}</div>
+    `
+            document.querySelector(".third").innerHTML = `
+      <div class="inner">${emojiList03.join("")}</div>
+      <div class="inner">${emojiList03.join("")}</div>
+    `
+        }
+
+        const btnReload = document.querySelector(".controls")
+        btnReload.addEventListener("click", function (e) {
+            e.preventDefault()
+            document.querySelectorAll(".reel").forEach((el) => el.remove())
+            document.querySelector(".container").innerHTML = `
+      <div class="reel first"></div>
+      <div class="reel second"></div>
+      <div class="reel third"></div>
+    `
+            emojiCode()
+        })
+    </script>
+</body>
+
+</html>
